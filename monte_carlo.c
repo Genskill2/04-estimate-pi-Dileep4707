@@ -14,11 +14,11 @@ float frandom() {
 int main(void) {
   float pi0;
   float pi1;
-  
+
   pi0 = mc_pi(25000);
   pi1 = mc_pi(25000);
   printf("%f %f\n", pi0, pi1);
-  
+
   if (pi0 == pi1) {
       printf("Two separate estimates of pi are exactly the same. This is unlikely.\n");
       abort();
@@ -29,7 +29,7 @@ int main(void) {
       abort();
   }
 
-    
+
   for (int i=2000; i<5000; i++) {
     pi0 = mc_pi(i);
     if (!(fabs(pi0 - M_PI) < 0.4)) {
@@ -38,6 +38,19 @@ int main(void) {
     }
   }
 }
+float mc_pi(int p){
+    int circle_count=0;
+    int rect_count=0;
+    float pi=0;
+    for(int i=1;i<=p;i++){
+        float x=2*frandom()-1;
+        float y=2*frandom()-1;
+        rect_count++;
+        float d=(x*x+y*y);
+        if(d<1)
+        circle_count++;}
+        pi=4*(float)circle_count/rect_count;
 
-
+              return pi;
+    }
 
